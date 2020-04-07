@@ -35,4 +35,9 @@ jobs:
                 tf_actions_version: 0.12.14
                 tf_actions_subcommand: 'plan'
               env:
+                ARM_CLIENT_ID: ${{ secrets.SERVICE_PRINCIPAL_ID }}
+                ARM_CLIENT_SECRET: ${{ secrets.SERVICE_PRINCIPAL_SECRET }}
+                ARM_SUBSCRIPTION_ID: ${{ secrets.AZ_SUBSCRIPTION_ID }}
+                ARM_TENANT_ID: ${{ secrets.AZ_TENANT_ID }}
+
                 GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
