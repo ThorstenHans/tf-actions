@@ -1,0 +1,38 @@
+name: 'Terraform verification'
+on:
+    - pull_request
+jobs:
+    terraform:
+        name: 'Terraform'
+        runs-on: ubuntu-latest
+        steps:
+            - name: 'checkout source'
+              uses: actions/checkout@master
+            - name: 'Terraform format'
+              uses: hashicorp/terraform-github-actions@master
+              with:
+                tf_actions_version: 0.12.14
+                tf_actions_subcommand: 'fmt'
+              env:
+                GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+            - name: 'Terraform init'
+              uses: hashicorp/terraform-github-actions@master
+              with:
+                tf_actions_version: 0.12.14
+                tf_actions_subcommand: 'init'
+              env:
+                GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+            - name: 'Terraform validate'
+              uses: hashicorp/terraform-github-actions@master
+              with:
+                tf_actions_version: 0.12.14
+                tf_actions_subcommand: 'validate'
+              env:
+                GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+            - name: 'Terraform plan'
+              uses: hashicorp/terraform-github-actions@master
+              with:
+                tf_actions_version: 0.12.14
+                tf_actions_subcommand: 'plan'
+              env:
+                GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
