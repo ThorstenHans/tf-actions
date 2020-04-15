@@ -7,5 +7,6 @@ resource "azurerm_resource_group" "rg_demo" {
   location = "westeurope"
   tags = {
     responsible = "Thorsten Hans"
+    app         = "2nd Webinar Demo"
   }
 }
